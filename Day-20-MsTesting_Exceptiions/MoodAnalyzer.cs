@@ -17,14 +17,22 @@ namespace Day_20_MsTesting_Exceptiions
 
         public string AnalyzeMood()  //param method to analayze mood
         {
-            if (this.message.ToLower().Contains("sad"))
-            { 
-               return "SAD";
+            try
+            {
+                if (this.message.ToLower().Contains("sad"))
+                {
+                    return "SAD";
+                }
+                else
+                {
+                    return "HAPPY";
+                }
             }
-            else
+            catch
             {
                 return "HAPPY";
             }
+            
         }
 
     }
