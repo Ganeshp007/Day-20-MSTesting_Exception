@@ -87,5 +87,29 @@ namespace MoodAnalyze_Testing
             
         }
 
+        /// <summary>
+        /// UC 6.2 => Using Reflection_passingImProperMethodNAme_Throw_CustomeException
+        /// </summary>
+
+        [TestMethod]
+        public void Using_Relection_Paasing_ImProperMethodName_Throw_CustomeException()
+        {
+            string message = "HAPPY";
+            string expected_Exception = "Method Not Found!!";
+            try
+            {
+                //Here We have CreateMoodAnalyzerObject static method 
+                object actual = MoodAnalyzerFactory.Invoking_MoodAnalyzer_AnalyzeMood_Methd("I am in Happy Mood", "Fake_AnalyzeMood");
+                Assert.AreEqual(actual, message);
+
+            }
+            catch(MoodAnalyzer_CustomException e)
+            {
+                Assert.AreEqual(expected_Exception, e.Message);
+            }
+           
+
+        }
+
     }
 }
