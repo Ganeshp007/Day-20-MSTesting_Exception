@@ -72,5 +72,20 @@ namespace MoodAnalyze_Testing
             }
         }
 
+        /// <summary>
+        /// UC 6.1 => Using Reflection_passingProperMessage_Return_Happy Mood
+        /// </summary>
+
+        [TestMethod]
+        public void Using_Relection_Paasing_ProperMessage_IaminHappyMood_Return_HAPPY()
+        {
+            string expected = "HAPPY";
+
+            //Here We have CreateMoodAnalyzerObject static method 
+            object actual = MoodAnalyzerFactory.Invoking_MoodAnalyzer_AnalyzeMood_Methd("I am in Happy Mood", "AnalyzeMood");
+            Assert.AreEqual(actual, expected);
+            
+        }
+
     }
 }
