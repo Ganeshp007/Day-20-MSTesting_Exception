@@ -15,16 +15,16 @@ namespace MoodAnalyze_Testing
         public void Reflection_withCorrectclassName_CorrectConstrutorName_ReturnsMoodAnalyzerObj()
         {
             string Message = "I am in Sad Mood";
-            MoodAnalyzer expected=new MoodAnalyzer(Message);
+            MoodAnalyzer expected = new MoodAnalyzer(Message);
             object actual = null;
             try
-            {   
+            {
 
                 //Here We have CreateMoodAnalyzerObject static method 
-                actual= MoodAnalyzerFactory.CreateObjectOfPramMoodAnalyzer("Day_20_MsTesting_Exceptiions.MoodAnalyzer", "MoodAnalyzer",Message);
-                
+                actual = MoodAnalyzerFactory.CreateObjectOfPramMoodAnalyzer("Day_20_MsTesting_Exceptiions.MoodAnalyzer", "MoodAnalyzer", Message);
+
             }
-            catch(MoodAnalyzer_CustomException e)
+            catch (MoodAnalyzer_CustomException e)
             {
                 throw new System.Exception(e.Message); //throwing Exception
             }
@@ -45,7 +45,7 @@ namespace MoodAnalyze_Testing
                 actual = MoodAnalyzerFactory.CreateObjectOfPramMoodAnalyzer("Day_20_MsTesting_Exceptiions.MoodAna", "MoodAnalyzer", message);
 
             }
-            catch (MoodAnalyzer_CustomException e )
+            catch (MoodAnalyzer_CustomException e)
             {
                 Assert.AreEqual(message, e.Message);
             }
@@ -63,7 +63,7 @@ namespace MoodAnalyze_Testing
             try
             {
                 //Here We have CreateMoodAnalyzerObject static method 
-                object obj = MoodAnalyzerFactory.CreateObjectOfPramMoodAnalyzer("Day_20_MsTesting_Exceptiions.MoodAnalyzer", "MoodAnaly","Constructor Not Found!!");
+                object obj = MoodAnalyzerFactory.CreateObjectOfPramMoodAnalyzer("Day_20_MsTesting_Exceptiions.MoodAnalyzer", "MoodAnaly", "Constructor Not Found!!");
 
             }
             catch (MoodAnalyzer_CustomException e)
@@ -84,7 +84,7 @@ namespace MoodAnalyze_Testing
             //Here We have CreateMoodAnalyzerObject static method 
             object actual = MoodAnalyzerFactory.Invoking_MoodAnalyzer_AnalyzeMood_Methd("I am in Happy Mood", "AnalyzeMood");
             Assert.AreEqual(actual, expected);
-            
+
         }
 
         /// <summary>
@@ -103,13 +103,33 @@ namespace MoodAnalyze_Testing
                 Assert.AreEqual(actual, message);
 
             }
-            catch(MoodAnalyzer_CustomException e)
+            catch (MoodAnalyzer_CustomException e)
             {
                 Assert.AreEqual(expected_Exception, e.Message);
             }
-           
 
         }
 
+        /// <summary>
+        /// UC 6.3 => Using Reflection_passingNUllMessage_Throw_CustomeException
+        /// </summary>
+        [TestMethod]
+        public void Using_Relection_Paasing_NullMessage_Throw_CustomeException()
+        {
+            string message = null;
+            string expected_Exception = "Message should not be null!!";
+            try
+            {
+                //Here We have CreateMoodAnalyzerObject static method 
+                object actual = MoodAnalyzerFactory.Invoking_MoodAnalyzer_AnalyzeMood_Methd(message, "AnalyzeMood");
+                Assert.AreEqual(actual, message);
+
+            }
+            catch (MoodAnalyzer_CustomException e)
+            {
+                Assert.AreEqual(expected_Exception, e.Message);
+            }
+
+        }
     }
-}
+}   
